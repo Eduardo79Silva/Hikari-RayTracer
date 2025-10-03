@@ -1,35 +1,12 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
+# RayTracer
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
+![Language](https://img.shields.io/badge/Language-C%2B%2B17-00599C?logo=cplusplus)
+![Graphics](https://img.shields.io/badge/Graphics-Vulkan-AC162C?logo=vulkan)
+![Build](https://img.shields.io/badge/Build-Premake5-orange)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
 <!-- PROJECT LOGO -->
 <br />
-<h3 align="center">RayTracer</h3>
 <div align="center">
   <a href="https://github.com/Eduardo79Silva/RayTracer">
     <img src="images/demo.png" alt="Demo"  width="60%" height="30%">
@@ -38,7 +15,7 @@
 
 
   <p align="center">
-    Raytracer with denoiser for rendering spheres. (In development)
+    Raytracer with denoiser for rendering spheres.
     <br />
     <br />
     <a href="https://github.com/Eduardo79Silva/RayTracer">
@@ -46,61 +23,45 @@
     </a>
     <br />
     Emissive materials showcase
-    <!-- <a href="https://github.com/Eduardo79Silva/RayTracer"><strong>Explore the docs »</strong></a> -->
-    <br />
-    <br />
-    <a href="https://github.com/Eduardo79Silva/RayTracer">View Demo</a>
-    ·
-    <a href="https://github.com/Eduardo79Silva/RayTracer/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/Eduardo79Silva/RayTracer/issues">Request Feature</a>
   </p>
 
 </div>
 
+**A CPU-based path tracing renderer with real-time preview capabilities.**
 
+This ray tracer implements physically-based rendering techniques including global illumination, material systems, and progressive accumulation. Built with modern C++ and Vulkan for display, it demonstrates low-level graphics programming and rendering algorithm implementation.
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#prerequisites">3rd party libaries</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+## Quick Start
 
+```bash
+./scripts/Setup.bat
+# Open generated solution and build
+```
 
+## Why This Implementation
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+Path tracing produces photorealistic images through physically accurate light simulation, but requires significant computation. This renderer balances quality and performance through progressive accumulation and parallel execution. The architecture separates rendering logic from presentation, enabling experimentation with different algorithms without display system changes.
 
+## Features
 
-This project serves a research and for further integration with my game engine. It is implemented with vulkan and used WalnutApp template from TheCherno for window creation abstraction. Will still implement anti-aliasing, meshes calculations and importance sampling.
+**Rendering Capabilities**
+- Path tracing with multiple bounce indirect lighting
+- Physically-based material system with roughness and metallic properties
+- Emission materials for light sources
+- Progressive accumulation for noise reduction
+- Real-time camera controls with orbit and WASD movement
+- Parallel rendering using execution policies
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+**Technical Systems**
+- Ray-sphere intersection tests with early exit optimization
+- Camera system with perspective projection and ray generation
+- Scene graph supporting multiple objects and materials
+- Frame accumulation buffer for temporal anti-aliasing
+- ImGui integration for runtime parameter adjustment
 
-
-
-
-
-<!-- GETTING STARTED -->
 ## Getting Started
 
-Once you've cloned, run `scripts/Setup.bat` to generate Visual Studio 2022 solution/project files. Once you've opened the solution, you can run the WalnutApp project to see a basic example (code in `WalnutApp.cpp`). I recommend modifying that WalnutApp project to create your own application, as everything should be setup and ready to go.
+Once you've cloned, run `scripts/Setup.bat` to generate Visual Studio 2022 solution/project files. Once you've opened the solution, you can run the WalnutApp project to see a basic example (code in `WalnutApp.cpp`).
 
 
 ### Prerequisites
@@ -114,77 +75,90 @@ Once you've cloned, run `scripts/Setup.bat` to generate Visual Studio 2022 solut
 - [stb_image](https://github.com/nothings/stb)
 - [GLM](https://github.com/g-truc/glm) (included for convenience)
 
-<br />
+### Usage
 
+**Camera Controls**
+- Right Mouse Button: Rotate camera
+- WASD: Move camera position
+- Q/E: Move camera up/down
 
-<!-- CONTRIBUTING -->
-## Contributing
+**Settings Panel**
+- Accumulate: Toggle progressive refinement
+- Reset: Clear accumulation buffer
+- Render: Force single frame render
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+**Scene Panel**
+- Adjust sphere positions and radius
+- Modify material properties including albedo, roughness, metallic, and emission
+- Changes automatically reset accumulation
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+## Technical Implementation
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+**Ray Generation**  
+The camera system precalculates ray directions for each pixel using inverse projection matrices. This approach amortizes matrix operations across frames, improving performance during accumulation passes.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+**Intersection Testing**  
+Sphere intersection uses the quadratic formula to solve ray-surface equations. The discriminant calculation enables early rejection of misses before computing actual hit distances. The closest intersection across all objects determines the visible surface.
 
+**Path Tracing Algorithm**  
+Each ray bounces multiple times, accumulating light contributions from emission sources and sky color. Diffuse reflection uses random hemisphere sampling based on surface normals. The renderer applies Russian roulette termination for unbiased energy conservation.
 
+**Material System**  
+Materials define surface properties through albedo color, roughness values, and emission parameters. The roughness value controls reflection distribution, while emission creates light-emitting surfaces. These properties integrate into the path tracing calculations for physically plausible results.
 
-<!-- LICENSE -->
+**Parallel Execution**  
+The renderer uses C++ execution policies to distribute pixel calculations across CPU threads. Each pixel operates independently, enabling efficient parallelization without synchronization overhead.
+
+**Accumulation Strategy**  
+Progressive refinement averages multiple samples per pixel over time. The frame index tracks accumulation depth, and camera movement triggers automatic reset. This approach reduces noise while maintaining interactive response.
+
+## System Architecture
+
+The codebase separates concerns through distinct components:
+
+**Renderer** handles pixel iteration, ray tracing, and image buffer management  
+**Camera** manages view transforms, projection, and ray direction generation  
+**Scene** stores object and material collections with indexing  
+**Walnut Framework** provides Vulkan abstraction and ImGui integration
+
+This separation enables independent testing and modification of rendering algorithms without affecting application infrastructure.
+
+## Technology Stack
+
+- C++17 with STL algorithms and execution policies
+- Vulkan for GPU-accelerated display
+- GLM for vector and matrix mathematics
+- ImGui for real-time parameter controls
+- Premake5 for cross-platform build configuration
+
+## Project Status
+
+**Current Implementation**  
+The ray tracer supports multiple objects, materials with emission, and parallel rendering with progressive accumulation. Camera controls enable interactive exploration of rendered scenes.
+
+**Potential Extensions**
+- BVH acceleration structure for complex scenes
+- Importance sampling for faster convergence
+- Additional primitive types beyond spheres
+- Texture mapping and normal mapping support
+- GPU compute shader implementation for increased performance
+
+## Development Context
+
+This project demonstrates competency in graphics programming fundamentals including ray-geometry intersection, camera mathematics, and rendering algorithms. The implementation prioritizes code clarity and extensibility while maintaining reasonable performance through parallel execution.
+
+The architecture supports experimentation with advanced techniques such as different sampling strategies, material models, and acceleration structures without requiring significant refactoring.
+
+## Building from Source
+
+The project uses Premake5 for build configuration. Supported platforms include Windows with Visual Studio 2022.
+
+```bash
+scripts/Setup.bat
+```
+
+The Walnut framework dependency provides Vulkan abstraction and UI components. All required libraries are referenced through the vendor directory structure.
+
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-eduardo4silva@gmail.com
-
-
-
-Project Link: [https://github.com/Eduardo79Silva/RayTracer](https://github.com/Eduardo79Silva/RayTracer)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/eduardo79silva/RayTracer.svg?style=for-the-badge
-[contributors-url]: https://github.com/Eduardo79Silva/RayTracer/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/eduardo79silva/RayTracer.svg?style=for-the-badge
-[forks-url]: https://github.com/Eduardo79Silva/RayTracer/network/members
-[stars-shield]: https://img.shields.io/github/stars/eduardo79silva/RayTracer.svg?style=for-the-badge
-[stars-url]: https://github.com/Eduardo79Silva/RayTracer/stargazers
-[issues-shield]: https://img.shields.io/github/issues/eduardo79silva/RayTracer.svg?style=for-the-badge
-[issues-url]: https://github.com/Eduardo79Silva/RayTracer/issues
-[license-shield]: https://img.shields.io/github/license/eduardo79silva/RayTracer.svg?style=for-the-badge
-[license-url]: https://github.com/Eduardo79Silva/RayTracer/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/eduardo79silva/
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+Copyright 2025. All rights reserved.
